@@ -12,11 +12,7 @@ const CharacterCard = ({ char, key }) => {
   const isFavorite = checkIsFavorite(char.id);
 
   const handleAddToFavorites = () => {
-    if (favorites.length < 4) {
-      addFavorites(char);
-    } else {
-      alert("Too many favorites, you can only have four!");
-    }
+    addFavorites(char);
   };
 
   const handleRemoveFromFavorites = () => {
@@ -78,14 +74,20 @@ const CharacterCard = ({ char, key }) => {
 
   return (
     <>
-      <Card key={key} id={char.id} style={{ width: "12rem" }}>
+      <Card
+        key={key}
+        id={char.id}
+        style={{ width: "264px", height: "410px" }}
+        className="flex flex-col justify-around items-center border-black border-2"
+      >
         <Card.Img
           variant="top"
           src={char.image}
           alt={`Picture of ${char.name}`}
+          style={{ width: "220px", height: "220px" }}
         />
         <Card.Body className="flex flex-col justify-evenly">
-          <Card.Title>{`${char.name}`}</Card.Title>
+          <Card.Title className="text-center capitalize">{`${char.name}`}</Card.Title>
           <Card.Text className="mb-3">
             {`Species: ${char.species}`}
             <br />
