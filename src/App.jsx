@@ -28,8 +28,15 @@ export default function App() {
 
   return (
     <>
+      {/* Include our navbar component here to ensure that it 
+      loads on every single page that is loaded */}
       <MyNavbar />
+      {/* Outlet for router to load different pages all under App.jsx */}
       <Outlet
+        /* 
+          Context used to pass down all of these elements to all children
+          pages of App.jsx specified in router.jsx 
+        */
         context={{ favorites, addFavorites, removeFavorites, checkIsFavorite }}
       />
     </>

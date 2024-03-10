@@ -5,12 +5,16 @@ import Card from "react-bootstrap/Card";
 import PropTypes from "prop-types";
 
 const CharacterCard = ({ char, key }) => {
+  // Grab all elements from context passed through Outlet by App.jsx
   const { favorites, addFavorites, removeFavorites, checkIsFavorite } =
     useOutletContext();
+  // Grab navigate function from react-router-dom
   const navigate = useNavigate();
 
+  // Check if current character that is being built is a favorite or not
   const isFavorite = checkIsFavorite(char.id);
 
+  // Event handlers for adding/removing favorites
   const handleAddToFavorites = () => {
     addFavorites(char);
   };
@@ -19,10 +23,18 @@ const CharacterCard = ({ char, key }) => {
     removeFavorites(char);
   };
 
+  // Event handler to navigate to character page passing in ID as the url param
   const goToCharacter = () => {
     navigate(`/character/${char.id}`);
   };
 
+  /*
+    If character is favorite, render remove favorite button with handler
+    If character is not a favorite but favorites.length < 4, render add favorite
+    button with handler
+    If character is not a favorite but favorites.length >= 4, render add
+    favorite button but disable it until favorites.length < 4
+  */
   const renderButton = () => {
     if (isFavorite) {
       return (
@@ -113,6 +125,7 @@ const CharacterCard = ({ char, key }) => {
   );
 };
 
+// Props validation
 CharacterCard.propTypes = {
   char: PropTypes.object,
   key: PropTypes.number,

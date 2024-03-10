@@ -1,4 +1,5 @@
 const AboutPage = () => {
+  // General about page with text information about show
   return (
     <>
       <div id="show-description">

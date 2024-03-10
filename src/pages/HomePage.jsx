@@ -1,3 +1,7 @@
+/**
+ * Homepage that renders automatically when baseURL is visited
+ */
+
 const HomePage = () => {
   /* 
      TODO: Style page more and possibly add hero img and text with 

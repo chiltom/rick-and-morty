@@ -8,12 +8,15 @@ import axios from "axios";
 const CharacterForm = ({ setCharacters }) => {
   const [input, setInput] = useState("");
   const [name, setName] = useState("");
+  // Grab navigate function from react-router-dom
   const navigate = useNavigate();
 
+  // Method to navigate back to all characters page
   const backToAll = () => {
     navigate("/characters");
   };
 
+  // Submit get request to API and grab all characters to display on page at first
   useEffect(() => {
     const getData = async () => {
       try {
@@ -28,6 +31,10 @@ const CharacterForm = ({ setCharacters }) => {
     getData();
   }, []);
 
+  /* 
+    If user supplies a name in the input field and submits, submit get request
+    to API for all character data under the specified name
+  */
   useEffect(() => {
     const getData = async () => {
       try {
@@ -44,6 +51,8 @@ const CharacterForm = ({ setCharacters }) => {
     }
   }, [name]);
 
+  // Event handler for submission, if there is input setName to input and useEffect will follow
+  // If input is empty, it will register as falsy and navigate the user back to the all characters page
   const handleSubmit = (e) => {
     if (input) {
       e.preventDefault();
@@ -87,6 +96,7 @@ const CharacterForm = ({ setCharacters }) => {
   );
 };
 
+// Props validation
 CharacterForm.propTypes = {
   setCharacters: PropTypes.func,
 };

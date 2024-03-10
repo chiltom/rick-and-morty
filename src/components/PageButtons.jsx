@@ -3,11 +3,15 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 
 const PageButtons = ({ nextPage, prevPage, setCharacters }) => {
+  // Get next page of characters from url provided by API and set characters with that data
+  // new URLs are also included with this information and is updated into page states in CharactersPage.jsx
   const handleNext = async () => {
     const { data } = await axios.get(nextPage);
     setCharacters(data);
   };
 
+  // Get prev page of characters from url provided by API and set characters with that data
+  // new URLs are also included with this information and is updated into page states in CharactersPage.jsx
   const handlePrev = async () => {
     const { data } = await axios.get(prevPage);
     setCharacters(data);
@@ -15,6 +19,7 @@ const PageButtons = ({ nextPage, prevPage, setCharacters }) => {
 
   return (
     <>
+      {/* Conditional rendering used to only render buttons if pages exist */}
       <div className="flex flex-row justify-evenly">
         {prevPage ? (
           <Button
@@ -46,6 +51,8 @@ const PageButtons = ({ nextPage, prevPage, setCharacters }) => {
     </>
   );
 };
+
+// Props validation
 
 PageButtons.propTypes = {
   nextPage: PropTypes.string,

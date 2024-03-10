@@ -1,3 +1,5 @@
+/* Required config paramters for tailwindcss */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

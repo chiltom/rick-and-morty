@@ -9,12 +9,18 @@ import Card from "react-bootstrap/Card";
 
 const ACharacterPage = () => {
   const [character, setCharacter] = useState({});
+  // Grab ID from router URL using useParams
   const { id } = useParams();
+  // Grab these methods from context passed from App.jsx in Outlet component
   const { favorites, addFavorites, removeFavorites, checkIsFavorite } =
     useOutletContext();
+  // Grab navigate function from useNavigate
   const navigate = useNavigate();
+  // Check if the character loaded on this page is in favorites or not
   const isFavorite = checkIsFavorite(character.id);
 
+  // Get character data by API get request using id from url (grabbed by useParams)
+  // Done on initial render
   useEffect(() => {
     const getCharacter = async () => {
       const { data } = await axios.get(
@@ -34,6 +40,7 @@ const ACharacterPage = () => {
     getCharacter();
   }, []);
 
+  // Handlers to pass into onClick attributes in buttons
   const handleAddToFavorites = () => {
     addFavorites(character);
   };
@@ -42,10 +49,18 @@ const ACharacterPage = () => {
     removeFavorites(character);
   };
 
+  // Take users back to all characters page using button
   const goToChars = () => {
     navigate("/characters");
   };
 
+  /*
+    If character is favorite, render remove favorite button with handler
+    If character is not a favorite but favorites.length < 4, render add favorite
+    button with handler
+    If character is not a favorite but favorites.length >= 4, render add
+    favorite button but disable it until favorites.length < 4
+  */
   const renderButton = () => {
     if (isFavorite) {
       return (
@@ -95,9 +110,11 @@ const ACharacterPage = () => {
 
   return (
     <>
+      {/* Use Container to place card in a central location on the page */}
       <Container>
         <Row>
           <Col className="flex justify-center mt-24">
+            {/* Make new card with more specific details about the character */}
             <Card
               key={character.id}
               style={{ width: "264px", height: "510px" }}
@@ -130,6 +147,7 @@ const ACharacterPage = () => {
             </Card>
           </Col>
         </Row>
+        {/* Button to take user back to all characters page */}
         <div className="flex flex-row justify-center mt-6">
           <Button
             size="sm"
