@@ -52,7 +52,7 @@ const ACharacterPage = () => {
         <Button
           variant="primary"
           size="sm"
-          className="bg-blue-500 mt-3"
+          className="bg-blue-500 mt-3 unfavorite"
           onClick={(e) => {
             e.preventDefault();
             handleRemoveFromFavorites();
@@ -98,14 +98,19 @@ const ACharacterPage = () => {
       <Container>
         <Row>
           <Col className="flex justify-center mt-24">
-            <Card key={character.id} style={{ width: "12rem" }}>
+            <Card
+              key={character.id}
+              style={{ width: "264px", height: "510px" }}
+              className="flex flex-col justify-around items-center border-2 border-black rounded-lg"
+            >
               <Card.Img
                 variant="top"
                 src={character.image}
                 alt={`Picture of ${character.name}`}
+                style={{ width: "260px", height: "220px" }}
               />
               <Card.Body className="flex flex-col justify-evenly">
-                <Card.Title>{`${character.name}`}</Card.Title>
+                <Card.Title className="text-center capitalize">{`${character.name}`}</Card.Title>
                 <Card.Text>
                   {`ID: ${character.id}`}
                   <br />
