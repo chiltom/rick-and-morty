@@ -28,11 +28,16 @@ const CharactersPage = () => {
 
   return (
     <>
-      <Container fluid>
+      <Container className="flex flex-col gap-2 m-2 " fluid>
         <Row>
           <CharacterForm setCharacters={setCharacters} />
         </Row>
-        <Row xl={5} lg={4} id="characters-container">
+        <Row
+          xl={5}
+          lg={4}
+          id="characters-container"
+          className="flex flex-row gap-2 justify-center items-center"
+        >
           {characters.results
             ? characters.results.map((char) => (
                 <Col key={char.id}>

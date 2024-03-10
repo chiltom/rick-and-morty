@@ -35,11 +35,7 @@ const ACharacterPage = () => {
   }, []);
 
   const handleAddToFavorites = () => {
-    if (favorites.length < 4) {
-      addFavorites(character);
-    } else {
-      alert("Too many favorites, you can only have four!");
-    }
+    addFavorites(character);
   };
 
   const handleRemoveFromFavorites = () => {
@@ -56,7 +52,7 @@ const ACharacterPage = () => {
         <Button
           variant="primary"
           size="sm"
-          className="bg-blue-500 mt-3"
+          className="bg-blue-500 mt-3 unfavorite"
           onClick={(e) => {
             e.preventDefault();
             handleRemoveFromFavorites();
@@ -65,16 +61,31 @@ const ACharacterPage = () => {
           Remove Favorite
         </Button>
       );
+    } else if (favorites.length < 4) {
+      return (
+        <Button
+          variant="primary"
+          size="sm"
+          className="bg-blue-500 favorite"
+          onClick={(e) => {
+            e.preventDefault();
+            handleAddToFavorites();
+          }}
+        >
+          Add Favorite
+        </Button>
+      );
     } else {
       return (
         <Button
           variant="primary"
           size="sm"
-          className="bg-blue-500 mt-3"
+          className="bg-blue-500 favorite"
           onClick={(e) => {
             e.preventDefault();
             handleAddToFavorites();
           }}
+          disabled
         >
           Add Favorite
         </Button>
@@ -87,14 +98,19 @@ const ACharacterPage = () => {
       <Container>
         <Row>
           <Col className="flex justify-center mt-24">
-            <Card key={character.id} style={{ width: "12rem" }}>
+            <Card
+              key={character.id}
+              style={{ width: "264px", height: "510px" }}
+              className="flex flex-col justify-around items-center border-2 border-black rounded-lg"
+            >
               <Card.Img
                 variant="top"
                 src={character.image}
                 alt={`Picture of ${character.name}`}
+                style={{ width: "260px", height: "220px" }}
               />
               <Card.Body className="flex flex-col justify-evenly">
-                <Card.Title>{`${character.name}`}</Card.Title>
+                <Card.Title className="text-center capitalize">{`${character.name}`}</Card.Title>
                 <Card.Text>
                   {`ID: ${character.id}`}
                   <br />
