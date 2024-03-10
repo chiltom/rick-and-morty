@@ -43,19 +43,36 @@ const CharacterCard = ({ char, key }) => {
         </Button>
       );
     } else {
-      return (
-        <Button
-          variant="primary"
-          size="sm"
-          className="bg-blue-500 favorite"
-          onClick={(e) => {
-            e.preventDefault();
-            handleAddToFavorites();
-          }}
-        >
-          Add Favorite
-        </Button>
-      );
+      if (favorites.length < 4) {
+        return (
+          <Button
+            variant="primary"
+            size="sm"
+            className="bg-blue-500 favorite"
+            onClick={(e) => {
+              e.preventDefault();
+              handleAddToFavorites();
+            }}
+          >
+            Add Favorite
+          </Button>
+        );
+      } else {
+        return (
+          <Button
+            variant="primary"
+            size="sm"
+            className="bg-blue-500 favorite"
+            onClick={(e) => {
+              e.preventDefault();
+              handleAddToFavorites();
+            }}
+            disabled
+          >
+            Add Favorite
+          </Button>
+        );
+      }
     }
   };
 

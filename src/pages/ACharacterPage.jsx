@@ -35,11 +35,7 @@ const ACharacterPage = () => {
   }, []);
 
   const handleAddToFavorites = () => {
-    if (favorites.length < 4) {
-      addFavorites(character);
-    } else {
-      alert("Too many favorites, you can only have four!");
-    }
+    addFavorites(character);
   };
 
   const handleRemoveFromFavorites = () => {
@@ -65,16 +61,31 @@ const ACharacterPage = () => {
           Remove Favorite
         </Button>
       );
+    } else if (favorites.length < 4) {
+      return (
+        <Button
+          variant="primary"
+          size="sm"
+          className="bg-blue-500 favorite"
+          onClick={(e) => {
+            e.preventDefault();
+            handleAddToFavorites();
+          }}
+        >
+          Add Favorite
+        </Button>
+      );
     } else {
       return (
         <Button
           variant="primary"
           size="sm"
-          className="bg-blue-500 mt-3"
+          className="bg-blue-500 favorite"
           onClick={(e) => {
             e.preventDefault();
             handleAddToFavorites();
           }}
+          disabled
         >
           Add Favorite
         </Button>
